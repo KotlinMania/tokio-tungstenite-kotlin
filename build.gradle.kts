@@ -273,6 +273,8 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.8.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.4.0")
+                // Upstream src/{lib,compat,handshake}.rs do `use log::*`.
+                implementation("io.github.kotlinmania:log-kotlin:0.1.1")
             }
         }
         val commonTest by getting {
