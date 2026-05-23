@@ -199,7 +199,11 @@ kotlin {
         binaries.framework { baseName = "TokioTungstenite"; xcf.add(this) }
     }
     iosSimulatorArm64 {
-        binaries.framework { baseName = "TokioTungstenite"; xcf.add(this) }
+        binaries.framework {
+            baseName = "TokioTungstenite"
+            isStatic = true
+            xcf.add(this)
+        }
     }
     iosX64 {
         binaries.framework { baseName = "TokioTungstenite"; xcf.add(this) }
