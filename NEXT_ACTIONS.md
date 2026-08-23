@@ -5,13 +5,13 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 7/7 (100.0%)
-- **Function parity:** 57/64 matched (target 99) — 89.1%
-- **Class/type parity:** 16/16 matched (target 33) — 100.0%
-- **Combined symbol parity:** 73/80 matched (target 132) — 91.2%
-- **Average inline-code cosine:** 0.57 (function body across 7 matched files)
-- **Average documentation cosine:** 0.44 (doc text across 7 matched files)
+- **Function parity:** 64/64 matched (target 109) — 100.0%
+- **Class/type parity:** 16/16 matched (target 35) — 100.0%
+- **Combined symbol parity:** 80/80 matched (target 144) — 100.0%
+- **Average inline-code cosine:** 0.60 (function body across 7 matched files)
+- **Average documentation cosine:** 0.54 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 5 files with <0.60 function similarity
+- **Critical Issues:** 4 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -30,28 +30,16 @@ Every matched file is listed below with function and type symbol parity.
 ### 1. lib
 
 - **Target:** `tokiotungstenite.Lib`
-- **Similarity:** 0.56
+- **Similarity:** 0.69
 - **Dependents:** 0
-- **Priority Score:** 63104.4
-- **Functions:** 22/28 matched (target 35)
-- **Missing functions:** `is_read`, `is_write`, `is_async_read`, `is_async_write`, `is_unpin`, `web_socket_stream_has_traits`
-- **Types:** 3/3 matched (target 4)
+- **Priority Score:** 3103.1
+- **Functions:** 28/28 matched (target 41)
+- **Missing functions:** _none_
+- **Types:** 3/3 matched (target 5)
 - **Missing types:** _none_
-- **Tests:** 0/6 matched
+- **Tests:** 6/6 matched
 
-### 2. proxy
-
-- **Target:** `tokiotungstenite.Proxy`
-- **Similarity:** 0.49
-- **Dependents:** 0
-- **Priority Score:** 10705.1
-- **Functions:** 6/7 matched (target 10)
-- **Missing functions:** `http_connect_handshake`
-- **Types:** 0/0 matched (target 3)
-- **Missing types:** _none_
-- **Tests:** 0/1 matched
-
-### 3. compat
+### 2. compat
 
 - **Target:** `tokiotungstenite.Compat`
 - **Similarity:** 0.59
@@ -62,7 +50,7 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 4/4 matched (target 5)
 - **Missing types:** _none_
 
-### 4. handshake
+### 3. handshake
 
 - **Target:** `tokiotungstenite.Handshake`
 - **Similarity:** 0.40
@@ -72,6 +60,18 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 7/7 matched (target 9)
 - **Missing types:** _none_
+
+### 4. proxy
+
+- **Target:** `tokiotungstenite.Proxy`
+- **Similarity:** 0.54
+- **Dependents:** 0
+- **Priority Score:** 704.6
+- **Functions:** 7/7 matched (target 14)
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 4)
+- **Missing types:** _none_
+- **Tests:** 1/1 matched
 
 ### 5. stream
 

@@ -2,6 +2,12 @@
 package io.github.kotlinmania.tokiotungstenite
 
 /**
+ * Convenience wrapper for streams to switch between plain TCP and TLS at runtime.
+ *
+ * There is no dependency on actual TLS implementations. Everything like
+ * `NativeTls` or `OpenSsl` will work as long as there is a TLS stream supporting standard
+ * Read and Write operations.
+ *
  * A stream that might be protected with TLS.
  */
 public sealed class MaybeTlsStream<S> : AsyncStream {
@@ -83,26 +89,44 @@ public sealed class MaybeTlsStream<S> : AsyncStream {
         }
     }
 
+    /**
+     * Returns a shared reference to the inner stream.
+     */
     public abstract fun getRef(): S
 
+    /**
+     * Returns a mutable reference to the inner stream.
+     */
     public abstract fun getMut(): S
 
+    /**
+     * Poll read bytes from the underlying stream into buffer.
+     */
     public fun pollRead(cx: Any?, buf: ByteArray): Int {
         if (cx != null) Unit
         return read(buf, 0, buf.size)
     }
 
+    /**
+     * Poll write bytes from buffer to the underlying stream.
+     */
     public fun pollWrite(cx: Any?, buf: ByteArray): Int {
         if (cx != null) Unit
         write(buf, 0, buf.size)
         return buf.size
     }
 
+    /**
+     * Poll flush pending writes to the stream.
+     */
     public fun pollFlush(cx: Any?) {
         if (cx != null) Unit
         flush()
     }
 
+    /**
+     * Poll shutdown / close the stream.
+     */
     public fun pollShutdown(cx: Any?) {
         if (cx != null) Unit
         close()

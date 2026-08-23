@@ -5,12 +5,21 @@ package io.github.kotlinmania.tokiotungstenite
  * Connector type selector for plain or TLS transports.
  */
 public sealed class Connector {
+    /**
+     * Plain unencrypted connector.
+     */
     public data object Plain : Connector()
 
+    /**
+     * Platform native-tls connector configuration.
+     */
     public class NativeTls(
         public val config: Any? = null,
     ) : Connector()
 
+    /**
+     * Rustls pure-Rust TLS connector configuration.
+     */
     public class Rustls(
         public val config: Any? = null,
     ) : Connector()
@@ -20,7 +29,14 @@ public sealed class Connector {
  * Transport mode enumeration (Plain vs TLS).
  */
 public enum class Mode {
+    /**
+     * Plain transport mode.
+     */
     Plain,
+
+    /**
+     * TLS-encrypted transport mode.
+     */
     Tls,
 }
 
@@ -28,6 +44,9 @@ public enum class Mode {
  * Native TLS encryption adapter.
  */
 public object NativeTlsEncryption {
+    /**
+     * Wrap stream in a native TLS session.
+     */
     public suspend fun <S> wrapStream(
         socket: S,
         domain: String,
@@ -46,6 +65,9 @@ public object NativeTlsEncryption {
  * Rustls encryption adapter.
  */
 public object RustlsEncryption {
+    /**
+     * Wrap stream in a Rustls session.
+     */
     public suspend fun <S> wrapStream(
         socket: S,
         domain: String,
@@ -64,6 +86,9 @@ public object RustlsEncryption {
  * Plain transport adapter.
  */
 public object PlainEncryption {
+    /**
+     * Wrap stream in plain unencrypted transport.
+     */
     public suspend fun <S> wrapStream(
         socket: S,
         mode: Mode,
