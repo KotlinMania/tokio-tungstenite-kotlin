@@ -38,7 +38,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Types:** 3/3 matched (target 4)
 - **Missing types:** _none_
 - **Tests:** 0/6 matched
-- **Lint issues:** 9
 
 ### 2. proxy
 
@@ -62,7 +61,6 @@ Every matched file is listed below with function and type symbol parity.
 - **Missing functions:** _none_
 - **Types:** 4/4 matched (target 5)
 - **Missing types:** _none_
-- **Lint issues:** 1
 
 ### 4. handshake
 
@@ -78,21 +76,20 @@ Every matched file is listed below with function and type symbol parity.
 ### 5. stream
 
 - **Target:** `tokiotungstenite.Stream`
-- **Similarity:** 0.42
+- **Similarity:** 0.46
 - **Dependents:** 0
-- **Priority Score:** 605.8
+- **Priority Score:** 605.4
 - **Functions:** 5/5 matched (target 22)
 - **Missing functions:** _none_
 - **Types:** 1/1 matched (target 4)
 - **Missing types:** _none_
-- **Lint issues:** 3
 
 ### 6. connect
 
 - **Target:** `tokiotungstenite.Connect`
-- **Similarity:** 0.74
+- **Similarity:** 0.75
 - **Dependents:** 0
-- **Priority Score:** 502.6
+- **Priority Score:** 502.5
 - **Functions:** 5/5 matched (target 6)
 - **Missing functions:** _none_
 - **Types:** 0/0 matched
