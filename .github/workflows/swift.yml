@@ -96,14 +96,14 @@ jobs:
           package = Path("build/SPMPackage/macosArm64/Debug/Package.swift")
           text = package.read_text()
           if "platforms:" not in text:
-              package.write_text(
-                  re.sub(
-                      r'(name:\s*"[^"]*",)',
-                      r'\1\n    platforms: [.macOS(.v14)],',
-                      text,
-                      count=1,
-                  )
+            package.write_text(
+              re.sub(
+                r'(name:\s*"[^"]*",)',
+                r'\1\n    platforms: [.macOS(.v14)],',
+                text,
+                count=1,
               )
+            )
           PY
 
       - name: Run swift test against Kotlin-exported module
