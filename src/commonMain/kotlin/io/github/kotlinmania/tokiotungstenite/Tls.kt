@@ -96,7 +96,7 @@ public object PlainEncryption {
         runCatching {
             when (mode) {
                 Mode.Plain -> MaybeTlsStream.Plain(socket)
-                Mode.Tls -> throw WsError.Protocol("TLS feature not enabled for plain connector")
+                Mode.Tls -> throw WsError.ProtocolViolation("TLS feature not enabled for plain connector")
             }
         }
 }

@@ -15,7 +15,7 @@ public sealed class WsError(
         message: String,
     ) : WsError("I/O error: $message")
 
-    public class Protocol(
+    public class ProtocolViolation(
         message: String,
     ) : WsError("Protocol violation: $message")
 
@@ -52,7 +52,7 @@ public enum class CloseCode(
 ) {
     Normal(1000),
     Away(1001),
-    Protocol(1002),
+    ProtocolError(1002),
     Unsupported(1003),
     Status(1005),
     Abnormal(1006),
