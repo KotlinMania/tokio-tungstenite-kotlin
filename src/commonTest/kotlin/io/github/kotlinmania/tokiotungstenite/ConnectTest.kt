@@ -61,7 +61,7 @@ class ConnectTest {
             val res = connectAsyncTlsWithConfig("wss://localhost:443/secure", config, disableNagle = false, connector = null)
             assertTrue(res.isSuccess)
             val (wsStream, _) = res.getOrThrow()
-            assertTrue(wsStream.getRef() is MaybeTlsStream.Plain)
+            assertTrue(wsStream.getRef() is MaybeTlsStream.NativeTls)
         }
     }
 }
