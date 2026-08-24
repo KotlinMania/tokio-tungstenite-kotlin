@@ -82,11 +82,11 @@ public suspend fun <S : AsyncStream> httpConnect(
         val firstLine = responseStr.lineSequence().firstOrNull() ?: ""
         val parts = firstLine.split(" ")
         if (parts.size < 2) {
-            throw WsError.Protocol("Invalid HTTP CONNECT response")
+            throw WsError.ProtocolViolation("Invalid HTTP CONNECT response")
         }
-        val statusCode = parts[1].toIntOrNull() ?: throw WsError.Protocol("Invalid HTTP status")
+        val statusCode = parts[1].toIntOrNull() ?: throw WsError.ProtocolViolation("Invalid HTTP status")
         if (statusCode !in 200..299) {
-            throw WsError.Protocol("HTTP CONNECT failed with status $statusCode")
+            throw WsError.ProtocolViolation("HTTP CONNECT failed with status $statusCode")
         }
     }
 
@@ -99,7 +99,7 @@ public suspend fun <S : AsyncStream> readConnectResponse(stream: S): Result<Byte
         val chunk = ByteArray(512)
         while (true) {
             if (buf.size >= MAX_CONNECT_RESPONSE_SIZE) {
-                throw WsError.Protocol("HTTP CONNECT response too large")
+                throw WsError.ProtocolViolation("HTTP CONNECT response too large")
             }
             val n = stream.read(chunk, 0, chunk.size)
             if (n <= 0) break
@@ -142,17 +142,17 @@ public suspend fun <S : AsyncStream> socks5Handshake(
             readTotal += r
         }
         if (choice[0].toInt() != 0x05) {
-            throw WsError.Protocol("SOCKS5: invalid response version")
+            throw WsError.ProtocolViolation("SOCKS5: invalid response version")
         }
 
         when (choice[1].toInt() and 0xFF) {
             0x00 -> Unit
             0x02 -> {
-                val nonNullAuth = auth ?: throw WsError.Protocol("SOCKS5: auth required but none provided")
+                val nonNullAuth = auth ?: throw WsError.ProtocolViolation("SOCKS5: auth required but none provided")
                 socks5UserpassAuth(stream, nonNullAuth).getOrThrow()
             }
-            0xFF -> throw WsError.Protocol("SOCKS5: no acceptable authentication method")
-            else -> throw WsError.Protocol("SOCKS5: unsupported authentication method")
+            0xFF -> throw WsError.ProtocolViolation("SOCKS5: no acceptable authentication method")
+            else -> throw WsError.ProtocolViolation("SOCKS5: unsupported authentication method")
         }
 
         sendSocks5Connect(stream, host, port).getOrThrow()
@@ -169,7 +169,7 @@ public suspend fun <S : AsyncStream> socks5UserpassAuth(
         val userBytes = auth.username.encodeToByteArray()
         val passBytes = auth.password.encodeToByteArray()
         if (userBytes.size > 255 || passBytes.size > 255) {
-            throw WsError.Protocol("SOCKS5 auth credentials too long")
+            throw WsError.ProtocolViolation("SOCKS5 auth credentials too long")
         }
         val buf = ByteArray(3 + userBytes.size + passBytes.size)
         buf[0] = 0x01
@@ -189,7 +189,7 @@ public suspend fun <S : AsyncStream> socks5UserpassAuth(
             readTotal += r
         }
         if (resp[0].toInt() != 0x01 || resp[1].toInt() != 0x00) {
-            throw WsError.Protocol("SOCKS5 authentication failed")
+            throw WsError.ProtocolViolation("SOCKS5 authentication failed")
         }
     }
 
@@ -204,7 +204,7 @@ public suspend fun <S : AsyncStream> sendSocks5Connect(
     runCatching {
         val hostBytes = host.encodeToByteArray()
         if (hostBytes.size > 255) {
-            throw WsError.Protocol("SOCKS5 domain name too long")
+            throw WsError.ProtocolViolation("SOCKS5 domain name too long")
         }
         val req = ByteArray(4 + 1 + hostBytes.size + 2)
         req[0] = 0x05
@@ -227,10 +227,10 @@ public suspend fun <S : AsyncStream> sendSocks5Connect(
             readTotal += r
         }
         if (header[0].toInt() != 0x05) {
-            throw WsError.Protocol("SOCKS5: invalid response version")
+            throw WsError.ProtocolViolation("SOCKS5: invalid response version")
         }
         if (header[1].toInt() != 0x00) {
-            throw WsError.Protocol("SOCKS5: connection failed with code ${header[1]}")
+            throw WsError.ProtocolViolation("SOCKS5: connection failed with code ${header[1]}")
         }
 
         val addrLen =
@@ -242,7 +242,7 @@ public suspend fun <S : AsyncStream> sendSocks5Connect(
                     lenBuf[0].toInt() and 0xFF
                 }
                 0x04 -> 16
-                else -> throw WsError.Protocol("SOCKS5: invalid address type")
+                else -> throw WsError.ProtocolViolation("SOCKS5: invalid address type")
             }
 
         val discard = ByteArray(addrLen + 2)

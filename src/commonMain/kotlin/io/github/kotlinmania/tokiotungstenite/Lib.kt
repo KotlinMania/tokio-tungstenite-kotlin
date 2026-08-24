@@ -119,7 +119,7 @@ public class WebSocketStream<S>(
      * Send a WebSocket message over the stream.
      */
     public suspend fun send(msg: Message): Result<Unit> {
-        if (ended) return Result.failure(WsError.Protocol("WebSocket is closed"))
+        if (ended) return Result.failure(WsError.ProtocolViolation("WebSocket is closed"))
         outMessages.send(msg)
         ready = true
         return Result.success(Unit)
@@ -172,7 +172,7 @@ public class WebSocketStream<S>(
      * Queue an outgoing message for transmission.
      */
     public fun startSend(item: Message): Result<Unit> {
-        if (ended) return Result.failure(WsError.Protocol("WebSocket stream ended"))
+        if (ended) return Result.failure(WsError.ProtocolViolation("WebSocket stream ended"))
         outMessages.trySend(item)
         return Result.success(Unit)
     }
@@ -276,9 +276,10 @@ public suspend fun <S, C> acceptHdrAsyncWithConfig(
 /**
  * In-memory async stream implementation for multiplatform buffers.
  */
-public class InMemoryAsyncStream(
-    private val buffer: ArrayList<Byte> = ArrayList(),
+public class InMemoryAsyncStream private constructor(
+    private val buffer: ArrayList<Byte>,
 ) : AsyncStream {
+    public constructor() : this(ArrayList())
     private var readPos = 0
 
     override fun read(buf: ByteArray, offset: Int, length: Int): Int {
