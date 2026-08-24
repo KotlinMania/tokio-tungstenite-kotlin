@@ -280,6 +280,7 @@ public class InMemoryAsyncStream private constructor(
     private val buffer: ArrayList<Byte>,
 ) : AsyncStream {
     public constructor() : this(ArrayList())
+
     private var readPos = 0
 
     override fun read(buf: ByteArray, offset: Int, length: Int): Int {
