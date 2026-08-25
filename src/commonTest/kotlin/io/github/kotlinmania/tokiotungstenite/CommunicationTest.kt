@@ -45,6 +45,19 @@ class CommunicationTest {
         }
     }
 
+    private suspend fun <S> runConnection(
+        connection: WebSocketStream<S>,
+    ): List<Message> {
+        val messages = mutableListOf<Message>()
+        while (true) {
+            val messageResult = connection.receive()
+            if (messageResult.isFailure) break
+            val message = messageResult.getOrNull() ?: break
+            messages.add(message)
+        }
+        return messages
+    }
+
     @Test
     fun splitCommunication() {
         runBlockingTest {
@@ -54,8 +67,12 @@ class CommunicationTest {
 
             for (i in 1..9) {
                 ws.enqueueReceivedMessage(Message.text("$i"))
-                val received = ws.receive().getOrNull()
-                assertNotNull(received)
+            }
+
+            val messages = runConnection(ws)
+            assertEquals(9, messages.size)
+            for (i in 1..9) {
+                val received = messages[i - 1]
                 assertTrue(received is Message.Text)
                 assertEquals("$i", received.string)
             }
