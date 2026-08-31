@@ -1,4 +1,4 @@
-// port-lint: source lib.rs
+// port-lint: source tokio-tungstenite/src/lib.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlinx.coroutines.channels.Channel
