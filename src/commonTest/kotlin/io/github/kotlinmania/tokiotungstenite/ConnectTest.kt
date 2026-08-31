@@ -1,4 +1,4 @@
-// port-lint: tests tokio-tungstenite/src/connect.rs
+// port-lint: tests connect.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlin.coroutines.Continuation

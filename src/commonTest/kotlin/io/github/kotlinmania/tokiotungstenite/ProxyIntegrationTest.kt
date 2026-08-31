@@ -1,4 +1,4 @@
-// port-lint: tests tokio-tungstenite/tests/proxy_integration.rs
+// port-lint: tests ../tests/proxy_integration.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlin.coroutines.Continuation
