@@ -1,4 +1,4 @@
-// port-lint: source tls.rs
+// port-lint: source tokio-tungstenite/src/tls.rs
 package io.github.kotlinmania.tokiotungstenite
 
 /**
