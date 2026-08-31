@@ -1,4 +1,4 @@
-// port-lint: tests ../tests/communication.rs
+// port-lint: tests tokio-tungstenite/tests/communication.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlin.coroutines.Continuation

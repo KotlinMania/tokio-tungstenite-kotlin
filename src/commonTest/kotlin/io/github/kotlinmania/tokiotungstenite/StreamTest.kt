@@ -1,4 +1,4 @@
-// port-lint: tests stream.rs
+// port-lint: tests tokio-tungstenite/src/stream.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlin.test.Test

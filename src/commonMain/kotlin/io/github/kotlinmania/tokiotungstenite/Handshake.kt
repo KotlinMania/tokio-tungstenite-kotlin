@@ -1,4 +1,4 @@
-// port-lint: source handshake.rs
+// port-lint: source tokio-tungstenite/src/handshake.rs
 package io.github.kotlinmania.tokiotungstenite
 
 public typealias Output = WebSocketStream<*>
