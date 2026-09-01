@@ -1,4 +1,4 @@
-// port-lint: source tokio-tungstenite/src/connect.rs
+// port-lint: source connect.rs
 package io.github.kotlinmania.tokiotungstenite
 
 /**
