@@ -1,4 +1,4 @@
-// port-lint: tests tokio-tungstenite/tests/handshakes.rs
+// port-lint: tests tests/handshakes.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlin.coroutines.Continuation
