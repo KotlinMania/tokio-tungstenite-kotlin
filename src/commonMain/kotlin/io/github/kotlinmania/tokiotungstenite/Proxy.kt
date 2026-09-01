@@ -1,4 +1,4 @@
-// port-lint: source tokio-tungstenite/src/proxy.rs
+// port-lint: source proxy.rs
 package io.github.kotlinmania.tokiotungstenite
 
 private const val MAX_CONNECT_RESPONSE_SIZE = 8192
