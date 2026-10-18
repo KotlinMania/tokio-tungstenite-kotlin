@@ -1,5 +1,12 @@
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.ProxyAuth
+import io.github.kotlinmania.tungstenite.ProxyConfig
+import io.github.kotlinmania.tungstenite.ProxyScheme
+import io.github.kotlinmania.tungstenite.protocol.Message
+import io.github.kotlinmania.tungstenite.protocol.frame.CloseCode
+import io.github.kotlinmania.tungstenite.protocol.frame.CloseFrame
+import io.github.kotlinmania.tungstenite.protocol.frame.Utf8Bytes
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -65,9 +72,9 @@ class TokioTungsteniteTest {
             val received = ws.receive().getOrNull()
             assertNotNull(received)
             assertTrue(received is Message.Text)
-            assertEquals("pong message", received.string)
+            assertEquals("pong message", received.toText())
 
-            val closeResult = ws.close(CloseFrame(CloseCode.Normal, "bye"))
+            val closeResult = ws.close(CloseFrame(CloseCode.Normal, Utf8Bytes.from("bye")))
             assertTrue(closeResult.isSuccess)
             assertTrue(ws.isTerminated())
         }

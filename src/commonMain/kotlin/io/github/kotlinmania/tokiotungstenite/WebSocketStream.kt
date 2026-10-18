@@ -1,5 +1,10 @@
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.TungsteniteException
+import io.github.kotlinmania.tungstenite.protocol.Message
+import io.github.kotlinmania.tungstenite.protocol.Role
+import io.github.kotlinmania.tungstenite.protocol.WebSocketConfig
+import io.github.kotlinmania.tungstenite.protocol.frame.CloseFrame
 import kotlinx.coroutines.channels.Channel
 
 /**
@@ -91,7 +96,7 @@ public class WebSocketStream<S>(
      * Send a WebSocket message over the stream.
      */
     public suspend fun send(msg: Message): Result<Unit> {
-        if (ended) return Result.failure(WsError.ProtocolViolation("WebSocket is closed"))
+        if (ended) return Result.failure(TungsteniteException.AlreadyClosed())
         outMessages.send(msg)
         ready = true
         return Result.success(Unit)
@@ -144,7 +149,7 @@ public class WebSocketStream<S>(
      * Queue an outgoing message for transmission.
      */
     public fun startSend(item: Message): Result<Unit> {
-        if (ended) return Result.failure(WsError.ProtocolViolation("WebSocket stream ended"))
+        if (ended) return Result.failure(TungsteniteException.AlreadyClosed())
         outMessages.trySend(item)
         return Result.success(Unit)
     }

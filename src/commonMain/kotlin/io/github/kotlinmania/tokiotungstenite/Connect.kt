@@ -1,6 +1,9 @@
 // port-lint: source connect.rs
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.ProxyConfig
+import io.github.kotlinmania.tungstenite.protocol.WebSocketConfig
+
 /**
  * Connection helper.
  *

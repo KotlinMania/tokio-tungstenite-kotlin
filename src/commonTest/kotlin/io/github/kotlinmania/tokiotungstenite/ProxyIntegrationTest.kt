@@ -1,6 +1,8 @@
 // port-lint: tests tests/proxy_integration.rs
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.ProxyConfig
+import io.github.kotlinmania.tungstenite.ProxyScheme
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext

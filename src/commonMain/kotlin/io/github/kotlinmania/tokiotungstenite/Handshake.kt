@@ -1,6 +1,8 @@
 // port-lint: source handshake.rs
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.handshake.MidHandshake as WsHandshake
+
 public typealias Output = WebSocketStream<*>
 
 /**
@@ -24,7 +26,7 @@ public class SkippedHandshakeFutureInner<F, S>(
  * Mid-handshake state representation.
  */
 public class MidHandshake<Role>(
-    public val handshake: Role?,
+    public val handshake: WsHandshake<Role>?,
 )
 
 /**
@@ -36,7 +38,7 @@ public sealed class StartedHandshake<Role> {
     ) : StartedHandshake<Role>()
 
     public class Mid<Role>(
-        public val handshake: Role,
+        public val handshake: MidHandshake<Role>,
     ) : StartedHandshake<Role>()
 }
 

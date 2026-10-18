@@ -1,6 +1,7 @@
 // port-lint: tests connect.rs
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.protocol.WebSocketConfig
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
