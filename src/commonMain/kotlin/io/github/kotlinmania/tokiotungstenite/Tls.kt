@@ -1,6 +1,10 @@
 // port-lint: source tls.rs
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.TungsteniteException
+import io.github.kotlinmania.tungstenite.UrlError
+import io.github.kotlinmania.tungstenite.protocol.WebSocketConfig
+
 /**
  * Connector type selector for plain or TLS transports.
  */
@@ -96,7 +100,7 @@ public object PlainEncryption {
         runCatching {
             when (mode) {
                 Mode.Plain -> MaybeTlsStream.Plain(socket)
-                Mode.Tls -> throw WsError.ProtocolViolation("TLS feature not enabled for plain connector")
+                Mode.Tls -> throw TungsteniteException.Url(UrlError.TlsFeatureNotEnabled)
             }
         }
 }

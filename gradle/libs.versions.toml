@@ -4,6 +4,12 @@ coroutines = "1.11.0"
 serialization = "1.11.0"
 datetime = "0.8.0"
 collectionsImmutable = "0.5.2"
+futures = "0.2.1"
+tokio = "0.1.1"
+log = "0.1.5"
+tungstenite = "0.2.0"
+bytes = "0.2.2"
+http = "0.2.1"
 androidKmp = "9.4.1"
 detekt = "2.0.0-alpha.6"
 ktlintEngine = "1.8.0"
@@ -26,6 +32,12 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collectionsImmutable" }
 kotlinx-benchmark-runtime = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-runtime", version.ref = "kotlinxBenchmark" }
+futures-kotlin = { module = "io.github.kotlinmania:futures-kotlin", version.ref = "futures" }
+tokio-kotlin = { module = "io.github.kotlinmania:tokio-kotlin", version.ref = "tokio" }
+log-kotlin = { module = "io.github.kotlinmania:log-kotlin", version.ref = "log" }
+tungstenite-kotlin = { module = "io.github.kotlinmania:tungstenite-kotlin", version.ref = "tungstenite" }
+bytes-kotlin = { module = "io.github.kotlinmania:bytes-kotlin", version.ref = "bytes" }
+http-kotlin = { module = "io.github.kotlinmania:http-kotlin", version.ref = "http" }
 
 [bundles]
 tokio-tungstenite-kotlin-commonMain = [
@@ -34,4 +46,10 @@ tokio-tungstenite-kotlin-commonMain = [
   "kotlinx-serialization-json",
   "kotlinx-datetime",
   "collections-immutable",
+  "futures-kotlin",
+  "tokio-kotlin",
+  "log-kotlin",
+  "tungstenite-kotlin",
+  "bytes-kotlin",
+  "http-kotlin",
 ]

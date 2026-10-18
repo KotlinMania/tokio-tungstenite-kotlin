@@ -1,6 +1,7 @@
 // port-lint: tests tests/communication.rs
 package io.github.kotlinmania.tokiotungstenite
 
+import io.github.kotlinmania.tungstenite.protocol.Message
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -73,7 +74,7 @@ class CommunicationTest {
             for (i in 1..9) {
                 val received = messages[i - 1]
                 assertTrue(received is Message.Text)
-                assertEquals("$i", received.string)
+                assertEquals("$i", received.toText())
             }
         }
     }
