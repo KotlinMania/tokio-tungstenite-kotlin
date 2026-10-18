@@ -61,7 +61,7 @@ public enum class CloseCode(
     Policy(1008),
     Size(1009),
     Extension(1010),
-    io.github.kotlinmania.tokiotungstenite.WsError(1011),
+    Error(1011),
     Restart(1012),
     Again(1013),
     Tls(1015),
