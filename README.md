@@ -71,7 +71,7 @@ For a quick summary of the pending performance problems/improvements, see [the c
 
 ```kotlin
 dependencies {
-    implementation("io.github.kotlinmania:tokio-tungstenite-kotlin:0.1.0")
+    implementation("io.github.kotlinmania:tokio-tungstenite-kotlin:0.2.0")
 }
 ```
 

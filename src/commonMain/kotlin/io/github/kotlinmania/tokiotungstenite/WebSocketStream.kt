@@ -1,34 +1,6 @@
-// port-lint: source lib.rs
 package io.github.kotlinmania.tokiotungstenite
 
 import kotlinx.coroutines.channels.Channel
-
-/**
- * Typealias for WebSocket message stream item.
- */
-public typealias Item = Message
-
-/**
- * Typealias for WebSocket protocol error.
- */
-public typealias Error = WsError
-
-/**
- * Extract domain name from a WebSocket request URL.
- *
- * Rustls expects IPv6 addresses without the surrounding square brackets.
- */
-public fun domain(request: Any): Result<String> =
-    runCatching {
-        val uriStr = request.toString()
-        val withoutScheme = if (uriStr.contains("://")) uriStr.substringAfter("://") else uriStr
-        val hostPort = withoutScheme.substringBefore("/").substringBefore("?")
-        if (hostPort.startsWith("[")) {
-            hostPort.substringAfter("[").substringBefore("]")
-        } else {
-            hostPort.substringBefore(":")
-        }
-    }
 
 /**
  * A wrapper around an underlying stream which implements the WebSocket protocol.
