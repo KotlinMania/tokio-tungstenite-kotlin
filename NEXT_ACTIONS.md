@@ -5,13 +5,13 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 7/7 (100.0%)
-- **Function parity:** 64/64 matched (target 132) — 100.0%
-- **Class/type parity:** 16/16 matched (target 57) — 100.0%
-- **Combined symbol parity:** 80/80 matched (target 189) — 100.0%
-- **Average inline-code cosine:** 0.60 (function body across 7 matched files)
-- **Average documentation cosine:** 0.54 (doc text across 7 matched files)
+- **Function parity:** 43/64 matched (target 97) — 67.2%
+- **Class/type parity:** 13/16 matched (target 53) — 81.2%
+- **Combined symbol parity:** 56/80 matched (target 150) — 70.0%
+- **Average inline-code cosine:** 0.51 (function body across 7 matched files)
+- **Average documentation cosine:** 0.50 (doc text across 7 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 4 files with <0.60 function similarity
+- **Critical Issues:** 5 files with <0.60 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
@@ -29,14 +29,14 @@ Every matched file is listed below with function and type symbol parity.
 
 ### 1. lib
 
-- **Target:** `tokiotungstenite.Lib`
-- **Similarity:** 0.69
+- **Target:** `tokiotungstenite.TungsteniteTypes`
+- **Similarity:** 0.04
 - **Dependents:** 0
-- **Priority Score:** 3103.1
-- **Functions:** 28/28 matched (target 55)
-- **Missing functions:** _none_
-- **Types:** 3/3 matched (target 25)
-- **Missing types:** _none_
+- **Priority Score:** 243109.6
+- **Functions:** 7/28 matched (target 20)
+- **Missing functions:** `client_async`, `client_async_with_config`, `accept_async`, `accept_async_with_config`, `accept_hdr_async`, `accept_hdr_async_with_config`, `from_raw_socket`, `from_partially_read`, `new`, `with_context`, `into_inner`, `get_ref`, `get_mut`, `get_config`, `poll_next`, `is_terminated`, `poll_ready`, `start_send`, `poll_flush`, `poll_close`, `domain`
+- **Types:** 0/3 matched (target 21)
+- **Missing types:** `WebSocketStream`, `Item`, `Error`
 - **Tests:** 6/6 matched
 
 ### 2. compat
